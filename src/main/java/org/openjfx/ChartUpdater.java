@@ -16,7 +16,7 @@ public class ChartUpdater extends Thread {
     public static void main(String[] args) {
         while (true) {
         try {
-            ServerSocket ss = new ServerSocket(6663);
+            ServerSocket ss = new ServerSocket(6664);
             Socket s = ss.accept(); // conexiones establecidas
             DataInputStream dis = new DataInputStream(s.getInputStream());
             String str = (String) dis.readUTF();
