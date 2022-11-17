@@ -1,6 +1,7 @@
 org\openjfx\MyChart$1$1.class
 org\openjfx\ChartUpdater.class
 org\openjfx\PrimaryController.class
+org\openjfx\MyClient.class
 org\openjfx\MyChart$1.class
 org\openjfx\MyChart.class
 org\openjfx\MyHeader.class
