@@ -10,11 +10,11 @@ class MyServer {
                 System.out.println("Esperando al cliente..."); // Esperando conexión
                 Socket s = ss.accept();
                 DataInputStream dis = new DataInputStream(s.getInputStream());
-                String palabras = (String) dis.readUTF();
+                String palabras = dis.readUTF();
                 System.out.println("mensaje= " + palabras);
                 ss.close();
             } catch (Exception e) {
-                System.err.println(e);
+                e.printStackTrace(); // System.err.println(e);
             }
         }
     }

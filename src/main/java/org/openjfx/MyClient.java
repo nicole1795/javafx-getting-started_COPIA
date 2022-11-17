@@ -33,7 +33,7 @@ public class MyClient {
 */
             }
             catch (Exception e) {
-                System.err.println(e);
+                e.printStackTrace(); // System.err.println(e);
             }
         }
     }
