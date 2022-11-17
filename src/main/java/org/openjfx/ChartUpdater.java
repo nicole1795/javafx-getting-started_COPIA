@@ -17,20 +17,23 @@ public class ChartUpdater extends Thread {
         while (true) {
         try {
             ServerSocket ss = new ServerSocket(6664);
+            System.out.println("Esperando al cliente..."); // Esperando conexión
             Socket s = ss.accept(); // conexiones establecidas
             DataInputStream dis = new DataInputStream(s.getInputStream());
             String str = (String) dis.readUTF();
             System.out.println("message= " + str);
-            Thread updater = new Thread(new Runnable() {
+  /*          Thread updater;
+            updater = new Thread(new Runnable()){
                 @Override
                 public void run() {
                     myChart.agregarvalor(Double.valueOf(str));
                 }
-            });
+            };*/
             ss.close();
-            Platform.runLater(updater);
-            } catch(Exception e){
-                System.err.println(e);
+            //Platform.runLater(updater);
+
+        } catch(Exception e){
+            e.printStackTrace(); // System.err.println(e);
             }
         }
 

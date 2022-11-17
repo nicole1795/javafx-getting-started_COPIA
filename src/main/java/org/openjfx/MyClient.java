@@ -7,7 +7,7 @@ public class MyClient {
     public static void main(String[] args) {
         while (true) {
             try {
-                Socket s = new Socket("localhost", 6661);
+                Socket s = new Socket("localhost", 6664);
                 DataOutputStream dout = new DataOutputStream(s.getOutputStream());
                 //dout.writeUTF("0.52"); //envio de datos al server
 
