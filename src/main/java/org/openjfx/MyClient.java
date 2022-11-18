@@ -8,12 +8,13 @@ public class MyClient {
         while (true) {
             try {
                 Socket s = new Socket("localhost", 6664);
+                // ServerSocket ss = new ServerSocket( "10.10.27.16" , 6661);
                 DataOutputStream dout = new DataOutputStream(s.getOutputStream());
                 //dout.writeUTF("0.52"); //envio de datos al server
 
                 Scanner entrada = new Scanner(System.in);
                 System.out.print("Introduzca su mensaje: ");
-                String mensaje = entrada.nextLine();
+                String mensaje = (String) entrada.nextLine();
                 dout.writeUTF(mensaje);
                 //System.out.println("¡Hola " + nombre + "!");
                 dout.flush();

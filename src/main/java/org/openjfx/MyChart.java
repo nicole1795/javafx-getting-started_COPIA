@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
 import javafx.scene.layout.VBox;
 import javafx.scene.chart.LineChart;
@@ -15,7 +16,9 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.chart.NumberAxis;
 
 import java.awt.*;
+import java.net.Socket;
 import java.util.Random;
+import java.util.Scanner;
 
 public class MyChart extends VBox {
     public MyChart() {
@@ -48,9 +51,25 @@ public void handle(ActionEvent actionEvent) {
             Runnable updater = new Runnable() {
                 @Override
                 public void run() {
-                    //agregarvalor();
-                    series.getData().add(new XYChart.Data<>(5*Math.random(),Math.random()));
-                };
+                        try {
+                            Socket s = new Socket("localhost", 6667);
+                            // ServerSocket ss = new ServerSocket( "10.10.27.16" , 6661);
+                            DataOutputStream dout = new DataOutputStream(s.getOutputStream());
+                            dout.writeUTF("0.52"); //envio de datos al server
+
+                           /* Scanner entrada = new Scanner(System.in);
+                            System.out.print("Introduzca su mensaje: ");
+                            String mensaje = (String) entrada.nextLine();
+                            dout.writeUTF(mensaje);*/
+                            //System.out.println("¡Hola " + nombre + "!");
+                            dout.flush();
+                            dout.close();
+                            s.close();
+                        }
+                        catch (Exception e) {
+                            e.printStackTrace(); // System.err.println(e);
+                        }
+                    }
             };
             while(true) {
                 Platform.runLater(updater);
@@ -85,8 +104,12 @@ public void handle(ActionEvent actionEvent) {
         lc.getData().add(series);
         return lc;
     }
-    public void agregarvalor(Double valueOf){
-        series.getData().add(new XYChart.Data<>(5*Math.random(),Math.random()));
+
+
+   public void agregarvalor(Double valueOf){
+        //series.getData().add(new XYChart.Data<>(5*Math.random(),Math.random()));
+        series.getData().add(new XYChart.Data<>());
+
     }
 }
 
